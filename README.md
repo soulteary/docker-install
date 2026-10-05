@@ -103,6 +103,23 @@ execution. Output is labelled `PASS (offline)` and must not be reported as live
 mirror validation. The separate CI job runs only these offline checks and syntax
 checks; it does not add Tencent Cloud network access to the installation matrix.
 
+### Offline APT version-selection regression checks
+
+```shell
+sh scripts/test-apt-version-selection.sh
+TEST_SHELL=bash sh scripts/test-apt-version-selection.sh
+```
+
+These checks execute the installer's APT installation flow against package-list
+fixtures and assert the selected Engine and CLI installation arguments. Platform
+detection is fixed to Ubuntu noble and privileged commands are intercepted by a
+strict command allowlist, so the checks do not access repositories, change the
+host, or install packages. They cover version-field boundaries, literal matching,
+epochs, partial versions, historical `-ce` releases, pre-releases, and unavailable
+versions. CI runs the fixtures under both `sh` and `bash`. This does not establish
+live repository availability or installation success; `--dry-run` still does not
+resolve version pins.
+
 ### Opt-in Tencent Cloud intranet smoke check
 
 **Run live checks only from a Tencent Cloud VM using the VPC private network.**
