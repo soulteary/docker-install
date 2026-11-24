@@ -15,7 +15,7 @@ jobs:
           - ubuntu:24.04
           - debian:12-slim
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Check generated commands and real dpkg locks
       run: |
         docker run --rm -v "$PWD:/v:ro" -w /v \
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Check mirror test syntax
       run: |
         sh -n scripts/test-mirrors.sh
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Check APT version test syntax
       run: sh -n scripts/test-apt-version-selection.sh
     - name: Check APT package selection (offline)
@@ -66,11 +66,11 @@ jobs:
           - quay.io/centos/centos:stream9
         version:
           - "27.5"
-          - "29.4.2"
+          - "29.10.0"
           - ""
 
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Shellcheck
       env:
         GH_TOKEN: ${{ github.token }}
@@ -91,9 +91,9 @@ jobs:
           - stable
         include:
           - channel: stable
-            stable_latest: "29.4.2"
+            stable_latest: "29.10.0"
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Install rootless
       env:
         GH_TOKEN: ${{ github.token }}
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Check installer syntax
       run: sh -n install.sh
     - name: Check RPM repository URL arguments (offline only)
